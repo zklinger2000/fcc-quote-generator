@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zack Klinger, Web Developer, Portland, OR</title>
+  <!-- load picturefill library -->
+<!--  <script src="/lib/picturefill.min.js" async></script>-->
+  <script src="https://code.jquery.com/jquery-2.2.2.js" integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE=" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- link to main stylesheet -->
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Kreon' rel='stylesheet'>
+  <!-- Qattrocentro font -->
+  <link href='https://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet' type='text/css'>
+  <!-- Qattrocentro Sans font -->
+  <link href='https://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="main-content">
+      <div class="row text-center">
+        <h1>Need a good quote?</h1>
+      </div>
+      <div class="row text-center quote-section">
+        <div class="col-xs-12 quote">
+          Love means never having to say you're sorry.
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-xs-12">
+          <em class="author"></em>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-xs-12">
+          <button id="getMessage" class="btn btn-primary">
+            Get Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <script>
+    $(document).ready(function() {
+      $("#getMessage").on("click", function() {
+
+        $.ajax({
+            url: 'https://andruxnet-random-famous-quotes.p.mashape.com/', // The URL to the API. You can get this in the API page of the API you intend to consume
+            type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+            data: {}, // Additional parameters here
+            dataType: 'json',
+            success: success,
+            error: function(err) { alert(err); },
+            beforeSend: function(xhr) {
+            xhr.setRequestHeader("X-Mashape-Authorization", "EVlyy9fuekmshulXASoYHnhRKezzp174aFPjsnGHg41TTitO5g"); // Enter here your Mashape key
+            }
+        });
+        function success(data) {
+          console.log(data);
+          $(".quote").text('"' + data.quote + '"');
+          $(".author").text(' - ' + data.author);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
