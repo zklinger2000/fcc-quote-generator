@@ -21,8 +21,35 @@ h1 {
   font-size: 3em;
   color: #ddd;
 }
+.author-section {
+  display: flex;
+  justify-content: flex-end;
+}
 .author {
   font-family: 'Quattrocento Sans', sans-serif;
   font-size: 2em;
   color: #bbb;
+  padding: 15px 15vw 15px 5vw;
+/*  padding: 15px 0;*/
+  min-height: 15vh;
+/*  flex: 2;*/
+}
+.get-another {
+/*  background: black;*/
+  font-size: 1.3em;
+  color: #ddf;
+  background-image: linear-gradient(0deg, #3b65a0, #427bca);
+  transition: all .1s;
+}
+.get-another:hover {
+/*  font-size: 1.4em;*/
+  color: #eef;
+  background-image: linear-gradient(0deg, #324580, #2a62b5);
+  transition: all .3s;
+}
+.btn:focus, .get-another:focus {
+/*  font-size: 1.4em;*/
+  color: #ddf;
+  background-image: linear-gradient(0deg, #2b4580, #225baa);
+  transition: all .3s;
 }
