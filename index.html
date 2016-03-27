@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- link to main stylesheet -->
   <link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -30,7 +31,6 @@
       </div>
       <div class="row text-center quote-section">
         <div class="col-xs-12 quote">
-          Love means never having to say you're sorry.
         </div>
       </div>
       <div class="row text-center">
@@ -38,17 +38,40 @@
           <em class="author"></em>
         </div>
       </div>
-      <div class="row text-center">
+      <div class="row text-center get-another">
         <div class="col-xs-12">
-          <button id="getMessage" class="btn get-another">
+          <button id="getMessage" class="btn">
             Get another
           </button>
         </div>
       </div>
+      <div class="row text-center twitter-share">
+        <div class="col-xs-12 twitter-share-section">
+
+        </div>
+      </div>
     </div>
-  </div>  
+  </div>
   <script>
     $(document).ready(function() {
+        $.ajax({
+            url: 'https://andruxnet-random-famous-quotes.p.mashape.com/', // The URL to the API. You can get this in the API page of the API you intend to consume
+            type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
+            data: {}, // Additional parameters here
+            dataType: 'json',
+            success: success,
+            error: function(err) { alert(err); },
+            beforeSend: function(xhr) {
+            xhr.setRequestHeader("X-Mashape-Authorization", "EVlyy9fuekmshulXASoYHnhRKezzp174aFPjsnGHg41TTitO5g"); // Enter here your Mashape key
+            }
+        });
+        function success(data) {
+          console.log(data);
+          $(".quote").text('"' + data.quote + '"');
+          $(".author").text(' - ' + data.author);
+          $(".twitter-share-section").html('<a href="https://twitter.com/intent/tweet?text=' + data.quote + ' -- ' + data.author + '" class="twitter-share-button" data-via="zklinger2000" data-size="large" data-hashtags="quotes" target="_blank">Tweet</a>');          
+        }
+      // Listener for 'Get another' button
       $("#getMessage").on("click", function() {
 
         $.ajax({
@@ -66,6 +89,7 @@
           console.log(data);
           $(".quote").text('"' + data.quote + '"');
           $(".author").text(' - ' + data.author);
+          $(".twitter-share-section").html('<a href="https://twitter.com/intent/tweet?text=' + data.quote + ' -- ' + data.author + '" class="twitter-share-button" data-via="zklinger2000" data-size="large" data-hashtags="quotes" target="_blank">Tweet</a>');          
         }
       });
     });

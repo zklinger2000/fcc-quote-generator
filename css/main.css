@@ -34,7 +34,10 @@ h1 {
   min-height: 15vh;
 /*  flex: 2;*/
 }
-.get-another {
+.get-another, .twitter-share {
+  min-height: 15vh;
+}
+.btn {
 /*  background: black;*/
   font-size: 1.3em;
   color: #ddf;
@@ -52,4 +55,7 @@ h1 {
   color: #ddf;
   background-image: linear-gradient(0deg, #2b4580, #225baa);
   transition: all .3s;
+}
+.twitter-share-button {
+/*  font-size: 4em;*/
 }
