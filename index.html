@@ -35,7 +35,7 @@
       </div>
       <div class="row text-center">
         <div class="col-xs-12 author-section">
-          <em class="author"></em>
+          <em class="author"></em><a href="#"></a>
         </div>
       </div>
       <div class="row text-center get-another">
@@ -54,6 +54,7 @@
   </div>
   <script>
     $(document).ready(function() {
+      function setTweetButton() {
         $.ajax({
             url: 'https://andruxnet-random-famous-quotes.p.mashape.com/', // The URL to the API. You can get this in the API page of the API you intend to consume
             type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
@@ -69,29 +70,28 @@
           console.log(data);
           $(".quote").text('"' + data.quote + '"');
           $(".author").text(' - ' + data.author);
-          $(".twitter-share-section").html('<a href="https://twitter.com/intent/tweet?text=' + data.quote + ' -- ' + data.author + '" class="twitter-share-button" data-via="zklinger2000" data-size="large" data-hashtags="quotes" target="_blank">Tweet</a>');          
+          $(".twitter-share-section").html('<a href="https://twitter.com/intent/tweet?text=' + data.quote + ' -- ' + data.author + '" class="btn btn-twitter" data-via="zklinger2000" data-size="large" data-hashtags="quotes" target="_blank"><i class="fa fa-twitter"></i></a>');          
+          $(".twitter-share-section").append("<p>go ahead and tweet it...</p>");
+          $(".author").css({opacity: 0});
+          $(".quote").css({opacity: 0}).animate({opacity: 1}, function() {
+            $(".author").css({opacity: 0}).animate({opacity: 1}, function() {
+            
+            });
+          }); 
         }
-      // Listener for 'Get another' button
-      $("#getMessage").on("click", function() {
+      }
+      
+      $(".get-another").stop(true, true).delay(2000).animate({opacity: 1}, function() {
+        $(".twitter-share-section").animate({opacity: 1}, function() {
 
-        $.ajax({
-            url: 'https://andruxnet-random-famous-quotes.p.mashape.com/', // The URL to the API. You can get this in the API page of the API you intend to consume
-            type: 'GET', // The HTTP Method, can be GET POST PUT DELETE etc
-            data: {}, // Additional parameters here
-            dataType: 'json',
-            success: success,
-            error: function(err) { alert(err); },
-            beforeSend: function(xhr) {
-            xhr.setRequestHeader("X-Mashape-Authorization", "EVlyy9fuekmshulXASoYHnhRKezzp174aFPjsnGHg41TTitO5g"); // Enter here your Mashape key
-            }
         });
-        function success(data) {
-          console.log(data);
-          $(".quote").text('"' + data.quote + '"');
-          $(".author").text(' - ' + data.author);
-          $(".twitter-share-section").html('<a href="https://twitter.com/intent/tweet?text=' + data.quote + ' -- ' + data.author + '" class="twitter-share-button" data-via="zklinger2000" data-size="large" data-hashtags="quotes" target="_blank">Tweet</a>');          
-        }
       });
+
+      // Listener for 'Get another' button
+      $("#getMessage").on("click", setTweetButton);
+
+      setTweetButton();
+      
     });
   </script>
 </body>

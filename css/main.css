@@ -14,7 +14,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 25vh;
+  min-height: 20vh;
 }
 .quote {
   font-family: 'Quattrocento', serif;
@@ -24,6 +24,7 @@ h1 {
 .author-section {
   display: flex;
   justify-content: flex-end;
+  min-height: 15vh;
 }
 .author {
   font-family: 'Quattrocento Sans', sans-serif;
@@ -34,8 +35,12 @@ h1 {
   min-height: 15vh;
 /*  flex: 2;*/
 }
-.get-another, .twitter-share {
+.get-another, .twitter-share-section {
   min-height: 15vh;
+  opacity: 0;
+}
+.get-another-section {
+  opacity: 0;
 }
 .btn {
 /*  background: black;*/
@@ -44,7 +49,7 @@ h1 {
   background-image: linear-gradient(0deg, #3b65a0, #427bca);
   transition: all .1s;
 }
-.get-another:hover {
+.btn:hover {
 /*  font-size: 1.4em;*/
   color: #eef;
   background-image: linear-gradient(0deg, #324580, #2a62b5);
@@ -56,6 +61,22 @@ h1 {
   background-image: linear-gradient(0deg, #2b4580, #225baa);
   transition: all .3s;
 }
-.twitter-share-button {
-/*  font-size: 4em;*/
+.btn-twitter {
+  font-size: 2.5em;
+}
+.twitter-share-section p {
+  font-family: 'Quattrocento Sans', sans-serif;
+  color: #d0d0dd;
+  font-size: 2em;
+  padding-top: 15px;
+}
+
+/* Animations */
+.quote {
+/*  display: none;*/
+  opacity: 0;
+}
+.author {
+/*  display: none;*/
+  opacity: 0;
 }
